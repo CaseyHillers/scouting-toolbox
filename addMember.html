@@ -1,0 +1,60 @@
+<!-- 
+ Casey Hillers' Venturing Management Tools: Tools to help Venture Crews manage themselves
+ Copyright (C) 2015 Casey Hillers
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<head>
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  
+  <style>
+    * {  padding: 5px; margin: 0;  }
+    html, body { height: 90%;}
+    br, hr { padding 0;}
+    h3 { border-bottom: 2px solid #000; padding-bottom: 0;}
+    input { width: 100%; height: 35px;}
+    .buttons { width: 100%; padding: 15px 0 0 0;}
+    .container {min-height: 100%; margin-bottom:-150px;}
+    .container:after {  content: "";display: block;}
+    .footer, .container:after { height: 150px;}
+  </style> 
+</head>
+
+<body>
+<script>
+function sendForm() {
+  var data = document.forms[0].elements[0].value;
+  google.script.run.withSuccessHandler(ready).processAddMemberForm(data);
+  document.getElementById("form").innerHTML = "Processing.."; 
+}
+function ready() {
+  document.getElementById("form").innerHTML = "Processed!"
+}
+</script>
+
+  <div class="container">
+  <span>&emsp;This script will help add a crew member to each and every single sheet that they should be on. <strong>Only officers should be using this script.</strong></span>
+  <form id="form">
+    <label for="name"><h3>Crew Member Name</h3></label>
+    <input id="name" type="text" name="name" placeholder="Last, First">
+    <div class="buttons">
+      <input type="button" class="action" onclick="javascript:sendForm();" value="Add">
+    </div>  
+  </form>
+  </div>
+  <div class="footer">
+   <span>If you find any problems with this script please report them to Casey Hillers.</span>
+  </div>
+</body>

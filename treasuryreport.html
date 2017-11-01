@@ -1,0 +1,76 @@
+<!-- 
+ Casey Hillers' Venturing Management Tools: Tools to help Venture Crews manage themselves
+ Copyright (C) 2015 Casey Hillers
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+<style>
+h3, span, p {  padding-left: 20px  }
+</style> 
+ 
+<div>
+<span>This program will run a treasury report of everyone in the crew.  <strong>Only the Crew Treasurer should be using this program.</strong></span>
+<hr />
+
+<form id="treasurerForm">
+
+
+  <label for="name"><h3>Treasurer Name</h3></label>
+  <input id="name" type="text" name="code">
+  <br />
+  
+  <label for="size"><h3>Crew Size</h3></label>
+  <input id="size" type="number" value="15" name="size" min="1" max="30">
+  
+  
+  <h3>Dues</h3>
+  <div class="dues">
+    <script src="TreasurerBot.gs"></script>
+    <script>
+      getDues();
+    </script>
+  
+    <div>
+      <input type="checkbox" id="checkbox1">
+      <label for="checkbox1">January Dues ($5)</label>
+    </div>
+    <div>
+      <input type="checkbox" id="checkbox2">
+      <label for="checkbox2">Class B ($20)</label>
+    </div>
+    <div>
+      <input type="checkbox" id="checkbox3">
+      <label for="checkbox3">February Dues ($5)</label>
+    </div>
+    <div>
+      <input type="checkbox" id="checkbox4">
+      <label for="checkbox4">March Dues ($5)</label>
+    </div>
+  </div>
+  <br />
+   
+  <div>
+    <input type="button" class="action" onclick="google.script.run.treasurerData()" value="Run">
+    <input type="button" onclick="google.script.host.close()" value="Close">
+  </div>
+  <hr />
+  <span class="gray">If you find any problems with this program please report them to Casey.</span>
+
+</form>
+
+
+</div>

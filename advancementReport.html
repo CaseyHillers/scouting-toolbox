@@ -1,0 +1,74 @@
+<!-- 
+ Casey Hillers' Venturing Management Tools: Tools to help Venture Crews manage themselves
+ Copyright (C) 2015 Casey Hillers
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<head>
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  
+  <style>
+    * {  padding: 5px; margin: 0;  }
+    html, body { height: 90%;}
+    br, hr { padding 0;}
+    h3 { border-bottom: 2px solid #000; padding-bottom: 0;}
+    input { width: 100%; height: 35px;}
+    .buttons { width: 100%; padding: 15px 0 0 0;}
+    .container {min-height: 100%; margin-bottom:-100px;}
+    .container:after {  content: "";display: block;}
+    .footer, .container:after { height: 100px;}
+  </style> 
+</head>
+
+<body>
+  <script>
+    function sendForm() {
+      var password = document.forms[0].elements[0].value;
+      var data = document.forms[0].elements[0].value;
+      google.script.run.withSuccessHandler(ready).processAdvancementReportForm(data);
+      document.getElementById("form").innerHTML = "Processing.."; 
+    }
+    function ready() {
+      document.getElementById("form").innerHTML = "Processed!"
+    }
+  </script>
+ 
+  <div class="container">
+    <span>&emsp;This script sends out a report to individual crew members on their current progress on awards. <strong>Only the president, vice presidents, and advisors should be using this script.</strong></span>
+    <form id="form">
+      <label for="name"><h3>Crew Password</h3></label>
+      <input id="name" type="password" name="name">
+      <h3 id="members">Crew Members</h3>
+      <script>
+         var members = google.script.run.withSuccessHandler(goGetThemTiger).getMemberList();
+         
+         function goGetThemTiger () {
+            for (var i = 0; i < members.length - 1; i++)
+            {
+               document.getElementById("members").innerHTML = members[i];
+            }
+         }
+      </script>
+      <h3>Overall Report</h3>
+      <span>Checking this box will send a summary + a copy of everyone's advancement report in an email to yourself. This helps when printing out the report as it will condense it all into one email.</span>
+      <div class="buttons">
+        <input type="button" class="action" onclick="javascript:sendForm();" value="Send Reports">
+      </div>  
+    </form>
+  </div>
+  <div class="footer">
+   <span>If you find any problems with this script please report them to Casey Hillers.</span>
+  </div>
+</body>
